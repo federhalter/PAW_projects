@@ -25,6 +25,9 @@ if ( ! (isset($kwota) && isset($okres) && isset($opracentowanie))) {
 if ( $kwota == "") {
 	$messages [] = 'Nie podano kwoty';
 }
+if ( $opracentowanie == "") {
+	$messages [] = 'Nie podano opracentowania';
+}
 if ( $okres == "") {
 	$messages [] = 'Nie podano okresu';
 }
@@ -34,32 +37,37 @@ if (empty( $messages )) {
 	
 	// sprawdzenie, czy $kwota i $okres są liczbami całkowitymi
 	if (! is_numeric( $kwota )) {
-		$messages [] = 'Kwota nie jest liczbą';
-	}
-	
-	if (! is_numeric( $okres )) {
-		$messages [] = 'Okres nie jest liczbą całkowitą';
-	}	
+		$messages [] = 'Kwota nie jest liczbą calkowitą';
 
+	} else if ( $kwota < 0) {
+         			$messages [] = 'Kwota nie może być ujemna';
+         		}
+    if (! is_numeric( $opracentowanie )) {
+    		$messages [] = 'Opracentowanie nie jest liczbą';
+    	}	else if ( $opracentowanie < 0) {
+                    $messages [] = 'Opracentowanie nie może być ujemne';
+                 	}
+    if (! is_numeric( $okres )) {
+                     		$messages [] = 'Okres nie jest liczbą całkowitą';
+        }	else if ( $okres < 0) {
+                    $messages [] = 'Okres nie może być ujemny';
+                    }
 }
 
 // 3. wykonaj zadanie jeśli wszystko w porządku
 
 if (empty ( $messages )) { // gdy brak błędów
-	$w = 0;
 	//konwersja parametrów na float
-	$kwota = floatval($kwota);
-	$okres = floatval($okres);
-	$opracentowanie = intval($opracentowanie);
-if(!($kwota < 0 || $okres <= 0 || $opracentowanie < 0)){
+	$kwota = intval($kwota);
+	$okres = intval($okres);
+	$opracentowanie = floatval($opracentowanie);
         $result = ($kwota + ($opracentowanie / 100 * $kwota)) / $okres;
-}else{
-             $messages [] = 'Wartości nie mogą być ujemne';
+
          	}
 
 	//wykonanie operacji
 
-}
+
 
 // 4. Wywołanie widoku z przekazaniem zmiennych
 // - zainicjowane zmienne ($messages,$kwota,$okres,$operation,$result)

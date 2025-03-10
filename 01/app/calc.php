@@ -50,7 +50,7 @@ if (empty( $messages )) {
     if (! is_numeric( $okres )) {
                      		$messages [] = 'Okres nie jest liczbą całkowitą';
         }	else if ( $okres <= 0) {
-                    $messages [] = 'Okres nie może być ujemny';
+                    $messages [] = 'Okres nie może być ujemny lub równy zero';
                     }
 }
 

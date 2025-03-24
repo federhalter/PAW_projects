@@ -1,80 +1,59 @@
-<!doctype html>
-<html lang="pl">
-<head>
-    <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="{$page_description|default:"Opis domyślny"}">
+<!DOCTYPE HTML>
+<!--
+	Escape Velocity by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>{$page_title|default:"Tytuł domyślny"}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=4, user-scalable=no" />
+		<link rel="stylesheet" href="/03_smarty/assets/css/main.css" />
+	</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
 
-    <title>{$page_title|default:"Tytuł domyślny"}</title>
+			<!-- Header -->
+				<section id="header" class="wrapper">
 
-	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure.css">
+					<!-- Logo -->
+						<div id="logo">
+							<h1>{$page_title|default:"Tytuł domyślny"}</a></h1>
+						</div>
 
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="{$app_url}/css/main-grid-old-ie.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="{$app_url}/css/main-grid.css">
-    <!--<![endif]-->
-  
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="{$app_url}/css/layouts/marketing-old-ie.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="{$app_url}/css/layouts/marketing.css">
-    <!--<![endif]-->
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li class="current"><a href="#app_content">Idź do formulaża</a></li>
+									<ul>
+						</nav>
 
-    <link rel="stylesheet" href="{$app_url}/css/style.css">
-{if $hide_intro }
-    <link rel="stylesheet" href="{$app_url}/css/style_hide_intro.css">
-{/if}
-	
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+				</section>
+		<div id="app_content" >
+			<!-- Intro -->
+			{block name=main} Domyślna treść .... {/block}
+		</div>
+			<!-- Main -->
+			<!-- Highlights -->
+			<!-- Footer -->
+			<section id="footer" class="wrapper">
+				{block name=footer}{/block}
+				<div id="copyright">
+					<ul>
+						<li>&copy; Dzmitry Vodzich.</li>
+					</ul>
+		</div>
+				</section>
+		</div>
 
-	<script src="{$app_url}/js/jquery.min.js"></script>
-	<script src="{$app_url}/js/softscroll.js"></script>
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
 
-</head>
-<body>
-
-<div id="app_top" class="header">
-    <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
-        <a class="pure-menu-heading" href="">{$page_title|default:"Tytuł domyślny"}</a>
-        <ul>
-            <li class="pure-menu-selected"><a href="#app_top">Góra strony</a></li>
-            <li><a href="#app_content">Idź do formularza</a></li>
-        </ul>
-    </div>
-</div>
-
-<div class="splash-container">
-    <div class="splash">
-        <h1 class="splash-head">{$page_title|default:"Tytuł domyślny"}</h1>
-        <p class="splash-subhead">
-             {$page_description|default:"Opis domyślny"}
-        </p>
-        <p>
-            <a href="#app_content" class="pure-button pure-button-primary">Idź do formularza</a>
-        </p>
-    </div>
-</div>
-
-<div class="content-wrapper">
-
-    <div id="app_content" class="content">
-
-{block name=content} Domyślna treść zawartości .... {/block}
-
-    </div>
-
-    <div class="footer l-box is-center">
-		<p>
-{block name=footer} Domyślna treść stopki .... {/block}
-		</p>
-        <p>Widok oparty na stylach i szablonie <a href="http://purecss.io/" target="_blank">Pure CSS Yahoo!</a>. (autor przykładu: Przemysław Kudłacik)</p>
-    </div>
-
-</div>
-
-
-</body>
+	</body>
 </html>

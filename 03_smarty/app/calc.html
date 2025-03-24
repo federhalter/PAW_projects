@@ -1,80 +1,78 @@
 {extends file="../templates/main.html"}
 
+{block name=footer}przykładowa tresć stopki wpisana do szablonu głównego z szablonu kalkulatora{/block}
 
+{block name=content}
 
-{block name=main}
-<section id="footer" class="wrapper">
-	<div class="title">Kalkulator</div>
-	<div class="container">
-<section>
-	<form action="{$app_url}/app/calc.php" method="post" >
-		<div class="row gtr-50">
-			<div class="col-6 col-12-small">
-				<label for="id_kwota" style="color: white">Kwota: </label>
-				<input id="id_kwota" type="text" name="kwota" value="{$form['kwota']}" placeholder = "2000PLN"/>
-			</div>
-			<div class="col-6 col-12-small">
-				<label for="id_op" style="color: white">Opracentowanie: </label>
-				<input id="id_op" type="text" name="op" value="{$form['op']}" placeholder = "0-700%" />
-			</div>
-			<div class="col-6 col-12-small">
-				<label for="id_okres" style="color: white";>Liczba miesiecy: </label>
-				<input id="id_okres" type="text" name="okres" value="{$form['okres']}" placeholder = "12 miesięcy" />
-			</div>
-			<div class="col-3">
-				<ul style= "margin-top: 30px">
-					<li><input type="submit" class="style1" value="Oblicz"  margin-top: 20px /></li>
-				</ul>
-			</div>
-		</div>
-	</form>
-</section>
-			<div class="col-6 col-12-small">
+<h2 class="content-head is-center">Prosty kalkulator</h2>
 
-			
-			{if isset($messages)}
-			{if count($messages) > 0}
-			<h4>Wystąpiły błędy: </h4>
-			<ol class="err">
-				{foreach  $messages as $msg}
-				{strip}
-				<li>{$msg}</li>
-				{/strip}
-				{/foreach}
-			</ol>
-			{/if}
-			{/if}
+<div class="pure-g">
+<div class="l-box-lrg pure-u-1 pure-u-med-2-5">
+	<form class="pure-form pure-form-stacked" action="{$app_url}/app/calc.php" method="post">
+		<fieldset>
 
-			</div>
+			<label for="x">Pierwsza liczba</label>
+			<input id="x" type="text" placeholder="wartość x" name="x" value="{$form['x']}">
 
-				<div class="col-6 col-12-small">
+			<label for="op">Operacja</label>
+					<select id="op" name="op">
 
-			{if isset($infos)}
-			{if count($infos) > 0}
-			<h4>Informacje: </h4>
-			<ol class="inf">
-				{foreach  $infos as $msg}
-				{strip}
-				<li>{$msg}</li>
-				{/strip}
-				{/foreach}
-			</ol>
-			{/if}
-			{/if}
-
-				</div>
-
-					<div class="col-6 col-12-small">
-
-		{if isset($result)}
-			<h4>Wynik</h4>
-			<p class="res">
-				{$result|default:"Brak wyniku"}
-			</p>
-			{/if}
-
+{if isset($form['op_name'])}
+<option value="{$form['op']}">ponownie: {$form['op_name']}</option>
+<option value="" disabled="true">---</option>
+{/if}
+						<option value="plus">(+) dodaj</option>
+						<option value="minus">(-) odejmij </option>
+						<option value="times">(*) pomnóż</option>
+						<option value="div">(/) podziel</option>
+					</select>
 					
-		</div>
-	</div>
+			<label for="y">Druga liczba</label>
+			<input id="y" type="text" placeholder="wartość y" name="y" value="{$form['y']}">
 
-	{/block}
+			<button type="submit" class="pure-button">Oblicz</button>
+		</fieldset>
+	</form>
+</div>
+
+<div class="l-box-lrg pure-u-1 pure-u-med-3-5">
+
+{* wyświeltenie listy błędów, jeśli istnieją *}
+{if isset($messages)}
+	{if count($messages) > 0} 
+		<h4>Wystąpiły błędy: </h4>
+		<ol class="err">
+		{foreach  $messages as $msg}
+		{strip}
+			<li>{$msg}</li>
+		{/strip}
+		{/foreach}
+		</ol>
+	{/if}
+{/if}
+
+{* wyświeltenie listy informacji, jeśli istnieją *}
+{if isset($infos)}
+	{if count($infos) > 0} 
+		<h4>Informacje: </h4>
+		<ol class="inf">
+		{foreach  $infos as $msg}
+		{strip}
+			<li>{$msg}</li>
+		{/strip}
+		{/foreach}
+		</ol>
+	{/if}
+{/if}
+
+{if isset($result)}
+	<h4>Wynik</h4>
+	<p class="res">
+	{$result}
+	</p>
+{/if}
+
+</div>
+</div>
+
+{/block}

@@ -62,21 +62,23 @@ class CalcCtrl {
         	$this->msgs->addError('Nie podano opracentowania');
         		}
 		
-		// nie ma sensu walidować dalej gdy brak parametrów
-		if (! $this->msgs->isError()) {
-			
-			// sprawdzenie, czy $x i $y są liczbami całkowitymi
-			if (! is_numeric ( $this->form->kwota )) {
-				$this->msgs->addError('Kwota nie jest liczbą');
-			}
-			
-			if (! is_numeric ( $this->form->okres )) {
-				$this->msgs->addError('Okres nie jest liczbą');
-			}
-            if (! is_numeric ( $this->form->op )) {
-            	$this->msgs->addError('Opracentowanie nie jest liczbą');
-            }
-		}
+
+            if (! is_numeric( $this->form->kwota )) {
+                       		$this->msgs->addError('Kwota nie jest liczbą calkowitą');
+
+                       	} else if ( $this->form->kwota< 0) {
+                                			$this->msgs->addError('Kwota nie może być ujemna');
+                                		}
+                           if (! is_numeric( $this->form->op )) {
+                           		$this->msgs->addError('Opracentowanie nie jest liczbą');
+                           	}	else if ( $this->form->op < 0) {
+                                           $this->msgs->addError('Opracentowanie nie może być ujemne');
+                                        	}
+                           if (! is_numeric( $this->form->okres )) {
+                                            		$this->msgs->addError('Okres nie jest liczbą całkowitą');
+                               }	else if ( $this->form->okres <= 0) {
+                                           $this->msgs->addError('Okres nie może być ujemny lub równy zero');
+                           }
 		
 		return ! $this->msgs->isError();
 	}
